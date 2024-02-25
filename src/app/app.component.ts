@@ -1,14 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  template: `
-    <h1>Welcome to {{title}}!</h1>
-
-    <router-outlet />
-  `,
-  styles: []
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styles: [],
 })
-export class AppComponent {
-  title = 'ng-pokemon-app';
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    console.log("l page a chargée...");
+  }
 }

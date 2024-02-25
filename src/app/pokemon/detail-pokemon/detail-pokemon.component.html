@@ -1,0 +1,77 @@
+<section class="flex flex-col h-full bg-gray-50 w-full">
+  <!-- Content -->
+  <div class="grid grid-cols-1">
+    <!-- Pokemon Page -->
+    <div
+      *ngIf="activePokemon"
+      class="flex flex-col bg-red-50 justify-center items-center h-full w-full"
+    >
+      <div class="text-xl text-center uppercase">
+        Bienvenue sur la page details de {{ activePokemon.name }}
+      </div>
+
+      <!-- Pokemon Card -->
+      <div class="grid grid-cols-2 gap-2">
+        <!-- Left Side -->
+        <img
+          alt="`${{ activePokemon.name }}`"
+          class="row-span-2"
+          [src]="activePokemon.picture"
+        />
+        <!-- Right Side -->
+        <div class="flex row-span-2 justify-between flex-col">
+          <!-- Name -->
+          <p class="text-2xl font-semibold">{{ activePokemon.name }}</p>
+          <!-- Type -->
+          <div class="flex gap-2">
+            <p
+              class="text-xs font-light {{ type | pokemonTypeColor }}"
+              *ngFor="let type of activePokemon.types"
+            >
+              {{ type }}
+            </p>
+          </div>
+
+          <!-- Point de vie -->
+          <p>Point de vie: {{ activePokemon.hp }}</p>
+          <!-- Dégat -->
+          <p>Dégat: {{ activePokemon.cp }}</p>
+          <!-- Spécialité -->
+          <p>Spécialité: {{ activePokemon.types | powerIllustrator }}</p>
+          <!-- Afficher la date dont on a besion en utilisant un pipe -->
+          <p>{{ activePokemon.created | dateFromNowFormatter }}</p>
+        </div>
+      </div>
+      <!-- Go Back -->
+      <div class="flex gap-3">
+        <button
+          (click)="goToPokemonList()"
+          class="p-3 rounded-md bg-yellow-100 hover:bg-yellow-500 hover:scale-95 hover:text-black text-gray-700 transition-all border-orange-400 border-2 mt-5"
+        >
+          Retour
+        </button>
+        <button
+          (click)="goToDetailPage(activePokemon)"
+          class="p-3 rounded-md bg-yellow-100 hover:bg-yellow-500 hover:scale-95 hover:text-black text-gray-700 transition-all border-orange-400 border-2 mt-5"
+        >
+          Editer {{ activePokemon.name }}
+        </button>
+        <button
+          (click)="deletePokemon(activePokemon)"
+          class="p-3 rounded-md bg-yellow-100 hover:bg-yellow-500 hover:scale-95 hover:text-black text-gray-700 transition-all border-orange-400 border-2 mt-5"
+        >
+          Supprimer {{ activePokemon.name }}
+        </button>
+      </div>
+    </div>
+    <!-- Edit Layout -->
+    <!-- <app-pokemon-form pokemon=`${{activePokemon}}  /> -->
+  </div>
+
+  <div
+    *ngIf="!activePokemon"
+    class="text-3xl flex justify-center h-screen uppercase items-center text-gray-600 text-center w-full"
+  >
+    Chargement...
+  </div>
+</section>

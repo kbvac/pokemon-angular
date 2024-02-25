@@ -1,0 +1,16 @@
+<div class="flex w-full flex-col gap-3 items-center bg-green-500 p-4">
+  <!-- Search Space -->
+  <input
+    #searchBox
+    (keyup)="search(searchBox.value)"
+    class="h-5 w-full rounded-md p-4"
+    placeholder="Rechercher..."
+  />
+  <!-- Result Space -->
+  <div *ngIf="searchBox.value" class="flex flex-col gap-2 transition-all w-full h-fit">
+    <a class="cursor-pointer text-xs hover:text-gray-800 transition-colors text-green-800 rounded-md p-2 bg-green-400" *ngFor="let pokemon of pokemoms$ | async" (click)="goToDetail(pokemon)">
+      {{ pokemon.name }}
+    </a>
+  </div>
+  
+</div>
