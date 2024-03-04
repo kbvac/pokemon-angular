@@ -7,6 +7,6 @@ import { Component, OnInit } from "@angular/core";
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    console.log("l page a chargée...");
+    console.log("la page a chargée...");
   }
 }
