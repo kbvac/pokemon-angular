@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
   styles: ``,
 })
 export class LoginComponent implements OnInit {
-  message: string = "Vous etes deconnecté. (pikachu/123)";
+  message: string = "Vous etes deconnecté. (pikachu/pikachu)";
   name: string;
   password: string;
   authService: AuthService;

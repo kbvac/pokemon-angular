@@ -2,124 +2,133 @@
   <div class="flex justify-center items-center h-screen">
     <div class="w-full max-w-md">
       <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <!-- Pokemon name -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name"
-            >Nom</label
-          >
-          <input
-            type="text"
-            class="form-input mt-1 block w-full"
-            required
-            pattern="^[a-zA-Z0-9àéèç]{1,25}$"
-            [(ngModel)]="pokemon.name"
-            name="name"
-            #name="ngModel"
-          />
+        <!-- Input Group -->
+        <div class="grid grid-cols-2">
+          <!-- Pokemon name -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name"
+              >Nom</label
+            >
+            <input
+              type="text"
+              class="form-input mt-1 block w-full"
+              required
+              pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+              [(ngModel)]="pokemon.name"
+              name="name"
+              #name="ngModel"
+            />
 
-          <div
-            [hidden]="name.valid || name.pristine"
-            class="text-red-500 text-xs bg-red-300 italic"
-          >
-            Le nom du pokémon est requis (1-25).
+            <div
+              [hidden]="name.valid || name.pristine"
+              class="text-red-500 text-xs bg-red-300 italic"
+            >
+              Le nom du pokémon est requis (1-25).
+            </div>
           </div>
-        </div>
 
-        <!-- Pokemon picture -->
-        <div *ngIf="isAddForm" class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="picture"
-            >Image</label
-          >
-          <input
-            type="url"
-            class="form-input mt-1 block w-full"
-            required
-            id="picture"
-            [(ngModel)]="pokemon.picture"
-            name="picture"
-            #picture="ngModel"
-          />
+          <!-- Pokemon picture -->
+          <div *ngIf="isAddForm" class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="picture"
+              >Image</label
+            >
+            <input
+              type="url"
+              class="form-input mt-1 block w-full"
+              required
+              id="picture"
+              [(ngModel)]="pokemon.picture"
+              name="picture"
+              #picture="ngModel"
+            />
 
-          <div
-            [hidden]="picture.valid || picture.pristine"
-            class="text-red-500 text-xs bg-red-300 italic"
-          >
-            L'image du pokemon est requise.
+            <div
+              [hidden]="picture.valid || picture.pristine"
+              class="text-red-500 text-xs bg-red-300 italic"
+            >
+              L'image du pokemon est requise.
+            </div>
           </div>
-        </div>
 
-        <!-- Pokemon hp -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="hp"
-            >Point de vie</label
-          >
-          <input
-            type="number"
-            class="form-input mt-1 block w-full"
-            required
-            pattern="^[0-9]{1,3}$"
-            [(ngModel)]="pokemon.hp"
-            name="hp"
-            #hp="ngModel"
-          />
-          <!-- pristine c'est lorsque la valeur n'as pas changer -->
-          <div
-            [hidden]="hp.valid || hp.pristine"
-            class="text-red-500 text-xs italic"
-          >
-            Les points de vie du pokémon sont compris entre 0 et 999.
+          <!-- Pokemon hp -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="hp"
+              >Point de vie</label
+            >
+            <input
+              type="number"
+              class="form-input mt-1 block w-full"
+              required
+              pattern="^[0-9]{1,3}$"
+              [(ngModel)]="pokemon.hp"
+              name="hp"
+              #hp="ngModel"
+            />
+            <!-- pristine c'est lorsque la valeur n'as pas changer -->
+            <div
+              [hidden]="hp.valid || hp.pristine"
+              class="text-red-500 text-xs italic"
+            >
+              Les points de vie du pokémon sont compris entre 0 et 999.
+            </div>
           </div>
-        </div>
 
-        <!-- Pokemon cp -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="cp"
-            >Dégâts</label
-          >
-          <input
-            type="number"
-            class="form-input mt-1 block w-full"
-            required
-            pattern="^[0-9]{1,2}$"
-            [(ngModel)]="pokemon.cp"
-            name="cp"
-            #cp="ngModel"
-          />
-          <div
-            [hidden]="cp.valid || cp.pristine"
-            class="text-red-500 text-xs italic"
-          >
-            Les dégâts du pokémon sont compris entre 0 et 99.
+          <!-- Pokemon cp -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="cp"
+              >Dégâts</label
+            >
+            <input
+              type="number"
+              class="form-input mt-1 block w-full"
+              required
+              pattern="^[0-9]{1,2}$"
+              [(ngModel)]="pokemon.cp"
+              name="cp"
+              #cp="ngModel"
+            />
+            <div
+              [hidden]="cp.valid || cp.pristine"
+              class="text-red-500 text-xs italic"
+            >
+              Les dégâts du pokémon sont compris entre 0 et 99.
+            </div>
           </div>
         </div>
 
         <!-- Pokemon types -->
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="types"
-            >Types</label>
-          <p *ngFor="let type of types" class="">
-            <label class="">
-              <input
-                type="checkbox"
-                class="form-checkbox h-5 w-5 text-gray-600"
-                id="{{ type }}"
-                [value]="type"
-                [checked]="hasType(type)"
-                [disabled]="!isTypesValid(type)"
-                (change)="selectType($event, type)"
-              />
-              <span [attr.for]="type" class="ml-2 bg-red-500 text-gray-700">
+            >Types</label
+          >
+
+          <div class="grid grid-cols-3">
+            <div *ngFor="let type of types" class="mb-1">
+              <label class="flex gap-1 justify-center items-center w-fit">
+                <input
+                  type="checkbox"
+                  class="form-checkbox h-5 w-5 text-gray-600"
+                  id="{{ type }}"
+                  [value]="type"
+                  [checked]="hasType(type)"
+                  [disabled]="!isTypesValid(type)"
+                  (change)="selectType($event, type)"
+                />
                 <div
+                  [attr.for]="type"
                   class="rounded-full cursor-pointer px-2 py-1 {{
                     type | pokemonTypeColor
                   }} text-white text-xs font-bold"
                 >
                   {{ type }}
                 </div>
-              </span>
-              
-            </label>
-          </p>
+              </label>
+            </div>
+          </div>
+
+
         </div>
 
         <!-- Submit button -->

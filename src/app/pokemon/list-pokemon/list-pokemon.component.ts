@@ -5,7 +5,9 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/fr"; // load on demand
 import { Router } from "@angular/router";
 import { PokemonService } from "../pokemon.service";
+import { AuthService } from "../../auth.service";
 dayjs.locale("fr"); // use French locale globally
+
 // Autoriser les calcules horaires relatif
 dayjs.extend(relativeTime);
 
@@ -23,11 +25,15 @@ export class ListPokemonComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private pokemonServices: PokemonService
+    private pokemonServices: PokemonService,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
     console.table(this.pokemons);
+    if(!this.auth.isLoggedIn){
+      this.router.navigate(["/login"]);
+    }
     this.today = dayjs();
     this.pokemonServices
       .getAllPokemonList()

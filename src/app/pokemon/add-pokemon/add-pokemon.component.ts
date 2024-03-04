@@ -4,8 +4,10 @@ import { Pokemon } from "../pokemon";
 @Component({
   selector: "app-add-pokemon",
   template: `
-    <p>Ajouter un pokemon</p>
-    <app-pokemon-form [pokemon]="pokemon" />
+    <div class="flex flex-col justify-center items-center h-full">
+      <p>Ajouter un pokemon</p>
+      <app-pokemon-form [pokemon]="pokemon" />
+    </div>
   `,
   styles: ``,
 })

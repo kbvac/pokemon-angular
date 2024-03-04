@@ -14,7 +14,7 @@ import { Component } from "@angular/core";
       <!-- Texte -->
       <p class="text-3xl text-gray-500">Hey, cette page n'existe pas</p>
       <!-- Redirection -->
-      <button routerLink="/pokemons" class="mt-5 text-xl uppercase">Retour</button>
+      <button routerLink="/pokemons" class="mt-5 text-sm text-blue-900 bg-blue-300 p-3 rounded-md uppercase">Retour</button>
     </div>
   `,
   styles: ``,

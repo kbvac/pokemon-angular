@@ -1,9 +1,11 @@
 <div class="flex flex-col justify-center items-center gap-4">
+  <h2 class="text-xl">Editer {{ pokemon?.name }}</h2>
 
-    <h2>Editer {{pokemon?.name}}</h2>
+  <div class="flex gap-3 justify-center items-center">
     <p *ngIf="pokemon">
-        <img [src]="pokemon.picture" />
+      <img [src]="pokemon.picture" />
     </p>
     <app-pokemon-form *ngIf="pokemon" [pokemon]="pokemon" />
+  </div>
 
 </div>
